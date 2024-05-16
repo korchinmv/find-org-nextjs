@@ -8,8 +8,6 @@ interface ListProps {
 }
 
 const List = ({ data }: ListProps) => {
-  console.log(data);
-
   return (
     <ul className='list'>
       {data.map((item) => {

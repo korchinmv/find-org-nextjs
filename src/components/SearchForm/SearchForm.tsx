@@ -3,13 +3,18 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useGetOrganizationMutation } from "@/redux/api/organization.api";
 import { useAppDispatch } from "@/redux/hooks";
-import "./SearchForm.scss";
-import Image from "next/image";
-import iconSearch from "./../../../public/icon-search.svg";
-import Error from "../Error/Error";
 import { organizations } from "@/redux/features/organizations/organizationsSlice";
+import "./SearchForm.scss";
+import iconSearch from "./../../../public/icon-search.svg";
+import Image from "next/image";
+import Error from "../Error/Error";
 
-const SearchForm = () => {
+interface SearchFormProps {
+  errorSearchData?: boolean;
+  errorData?: boolean;
+}
+
+const SearchForm = ({ errorData, errorSearchData }: SearchFormProps) => {
   const [inputSearchForm, setInputSearchForm] = useState<string>("");
   const [errorForm, setErrorForm] = useState<boolean>(false);
   const [getData, { isError }] = useGetOrganizationMutation();
@@ -57,8 +62,10 @@ const SearchForm = () => {
           <Image src={iconSearch} width={30} height={30} alt='Иконка поиска' />
         </button>
       </form>
-      {errorForm && <Error text='Организаций с таким ИНН нет' />}
-      {isError && <Error text='Возникла ошибка' />}
+      {errorForm || errorSearchData ? (
+        <Error text='Организаций с таким ИНН нет' />
+      ) : null}
+      {isError || errorData ? <Error text='Возникла ошибка' /> : null}
     </>
   );
 };

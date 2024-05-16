@@ -1,4 +1,6 @@
 import { Organization } from "@/types/Organization";
+import { useState } from "react";
+import { getСoordinates } from "@/utils/getCoordinates";
 import "./OrganizationCard.scss";
 
 interface OrganizationCardProps {
@@ -6,7 +8,12 @@ interface OrganizationCardProps {
 }
 
 const OrganizationCard = ({ org }: OrganizationCardProps) => {
-  console.log(org);
+  const [coordinates, setCoordinates] = useState<string | undefined>("");
+
+  getСoordinates({
+    adress: org.data.address?.value,
+    setCoordinates: setCoordinates,
+  });
 
   return (
     <li className='list__item'>
@@ -27,10 +34,10 @@ const OrganizationCard = ({ org }: OrganizationCardProps) => {
 
           {org.data.address?.value && (
             <li className='organization-card__item'>
-              Адрес:
-              <a className='organization-card__link' href='#'>
+              {"Адрес: "}
+              <button className='organization-card__button' onClick={}>
                 {` ${org.data.address.value}`}
-              </a>
+              </button>
             </li>
           )}
         </ul>
