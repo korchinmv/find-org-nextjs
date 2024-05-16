@@ -17,6 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ru'>
+      <head>
+        <meta
+          http-equiv='Content-Security-Policy'
+          content='upgrade-insecure-requests'
+        ></meta>
+      </head>
       <StoreProvider>
         <body className={inter.className}>{children}</body>
       </StoreProvider>
