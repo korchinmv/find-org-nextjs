@@ -2,7 +2,7 @@ import { api } from "./api.js";
 
 export const organizationApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getOrganisation: builder.mutation({
+    getOrganization: builder.mutation({
       query: (data) => {
         return {
           headers: {
@@ -18,4 +18,4 @@ export const organizationApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetOrganisationMutation } = organizationApi;
+export const { useGetOrganizationMutation } = organizationApi;

@@ -1,0 +1,19 @@
+.list {
+	padding: 30px 0;
+	position: relative;
+
+	&::before {
+		content: '';
+		display: block;
+		background-color: var(--black-color);
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 1px;
+		width: 100%;
+	}
+
+	&__item:not(:last-of-type) {
+		margin-bottom: 20px;
+	}
+}

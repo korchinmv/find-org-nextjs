@@ -1,9 +1,9 @@
-import styles from "./page.module.scss";
 import SearchForm from "@/components/SearchForm/SearchForm";
+import "./globals.scss";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main className='main'>
       <SearchForm />
     </main>
   );

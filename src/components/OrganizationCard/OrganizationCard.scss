@@ -1,0 +1,22 @@
+.organization-card {
+	border: 1px dashed var(--black-color);
+	border-radius: 15px;
+	padding: 20px;
+
+	&__title {
+		margin-bottom: 10px;
+	}
+
+	&__item:not(:last-of-type) {
+		margin-bottom: 5px;
+	}
+
+	&__link {
+		text-decoration: underline;
+		transition: color 0.2s ease-in-out;
+
+		&:hover {
+			color: var(--red-color);
+		}
+	}
+}

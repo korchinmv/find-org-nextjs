@@ -4,9 +4,10 @@
 	border-radius: 20px;
 	position: relative;
 	max-width: 500px;
+	margin-bottom: 50px;
 	width: 100%;
 
-	.input {
+	&__input {
 		border: none;
 		border-radius: 20px;
 		font-size: 24px;
@@ -17,7 +18,8 @@
 		width: 100%;
 	}
 
-	.button {
+	&__button {
+		background-color: var(--light-bg-color);
 		border: none;
 		border-radius: 0 17px 17px 0;
 		cursor: pointer;
