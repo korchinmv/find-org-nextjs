@@ -3,6 +3,7 @@
 	--red-color: #df4343;
 	--white-color: #fff;
 	--black-color: #000;
+	--blue-color: #608ae3;
 }
 
 * {
@@ -15,6 +16,7 @@ html,
 body {
 	max-width: 100vw;
 	overflow-x: hidden;
+	position: relative;
 }
 
 body {
@@ -30,10 +32,13 @@ li {
 	list-style-type: none;
 }
 
+button {
+	border: none;
+}
+
 .main {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding: 5em;
-	height: 100vh;
 }

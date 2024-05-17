@@ -56,6 +56,7 @@ const SearchForm = ({ errorData, errorSearchData }: SearchFormProps) => {
           title='Допускаются только числа'
           type='search'
           required
+          name='form-input'
         />
 
         <button className='form__button' aria-label='Начать поиск'>

@@ -1,11 +1,12 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { organizationsSelector } from "@/redux/features/organizations/organizationsSelector";
 import { useGetOrganizationMutation } from "@/redux/api/organization.api";
+import { organizationsSelector } from "@/redux/features/organizations/organizationsSelector";
 import { useEffect, useState } from "react";
 import { organizations } from "@/redux/features/organizations/organizationsSlice";
+import { Organization } from "@/types/Organization";
 import { MoonLoader } from "react-spinners";
-import "./../../../app/globals.scss";
+import ConfirmPopup from "@/components/ConfirmPopup/ConfirmPopup";
 import SearchForm from "@/components/SearchForm/SearchForm";
 import List from "@/components/List/List";
 
@@ -16,8 +17,18 @@ interface OrganisationPageProps {
 const OrganisationPage = ({ params: { slug } }: OrganisationPageProps) => {
   const [getData, { isError, isLoading }] = useGetOrganizationMutation();
   const [errorData, setErrorData] = useState<boolean>(false);
+  const [popupOpen, setPopupOpen] = useState<boolean>(false);
+  const [selectedCard, setSelectedCard] = useState<Organization>();
   const organizationsList = useAppSelector(organizationsSelector);
   const dispatch = useAppDispatch();
+
+  const handleCardClick = (card: Organization) => {
+    setSelectedCard(card);
+  };
+
+  const closePopup = () => {
+    setPopupOpen(false);
+  };
 
   useEffect(() => {
     if (slug) {
@@ -36,14 +47,27 @@ const OrganisationPage = ({ params: { slug } }: OrganisationPageProps) => {
   }, [slug, getData, dispatch]);
 
   return (
-    <main className='main'>
-      <SearchForm errorSearchData={errorData} errorData={isError} />
-      {isLoading ? (
-        <MoonLoader color='#df4343' />
-      ) : (
-        <List data={organizationsList.suggestions} />
-      )}
-    </main>
+    <>
+      <main className='main'>
+        <SearchForm errorSearchData={errorData} errorData={isError} />
+        {isLoading ? (
+          <MoonLoader color='#df4343' />
+        ) : (
+          <List
+            data={organizationsList.suggestions}
+            onCardClick={handleCardClick}
+            setPopupOpen={setPopupOpen}
+          />
+        )}
+      </main>
+      <ConfirmPopup
+        title='Перейти на внешний ресурс?'
+        buttonText='Перейти'
+        closePopup={closePopup}
+        isOpen={popupOpen}
+        card={selectedCard}
+      />
+    </>
   );
 };
 

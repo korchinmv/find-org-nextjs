@@ -1,14 +1,18 @@
 import { Organization } from "@/types/Organization";
-import { useState } from "react";
 import { getСoordinates } from "@/utils/getCoordinates";
 import "./OrganizationCard.scss";
+import { useState } from "react";
 
 interface OrganizationCardProps {
   org: Organization;
+  setPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const OrganizationCard = ({ org }: OrganizationCardProps) => {
+const OrganizationCard = ({ org, setPopupOpen }: OrganizationCardProps) => {
   const [coordinates, setCoordinates] = useState<string | undefined>("");
+  const handleClick = () => {
+    setPopupOpen(true);
+  };
 
   getСoordinates({
     adress: org.data.address?.value,
@@ -35,7 +39,10 @@ const OrganizationCard = ({ org }: OrganizationCardProps) => {
           {org.data.address?.value && (
             <li className='organization-card__item'>
               {"Адрес: "}
-              <button className='organization-card__button' onClick={}>
+              <button
+                className='organization-card__button'
+                onClick={handleClick}
+              >
                 {` ${org.data.address.value}`}
               </button>
             </li>
