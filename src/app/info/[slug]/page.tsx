@@ -16,9 +16,9 @@ interface OrganisationPageProps {
 
 const OrganisationPage = ({ params: { slug } }: OrganisationPageProps) => {
   const [getData, { isError, isLoading }] = useGetOrganizationMutation();
+  const [selectedCard, setSelectedCard] = useState<Organization>();
   const [errorData, setErrorData] = useState<boolean>(false);
   const [popupOpen, setPopupOpen] = useState<boolean>(false);
-  const [selectedCard, setSelectedCard] = useState<Organization>();
   const organizationsList = useAppSelector(organizationsSelector);
   const dispatch = useAppDispatch();
 

@@ -1,7 +1,5 @@
 import { Organization } from "@/types/Organization";
-
 import "./OrganizationCard.scss";
-import { useState } from "react";
 
 interface OrganizationCardProps {
   org: Organization;

@@ -1,4 +1,3 @@
-import { getСoordinates } from "@/utils/getCoordinates";
 import { Organization } from "@/types/Organization";
 import "./ConfirmPopup.scss";
 
@@ -17,11 +16,6 @@ const ConfirmPopup = ({
   closePopup,
   card,
 }: ConfirmPopupProps) => {
-  let coordinates;
-  if (card?.data.address.value) {
-    coordinates = getСoordinates({ adress: card.data.address.value });
-  }
-
   return (
     <div className={`popup ${isOpen && "popup_opened"}`}>
       <div className='popup__container'>
@@ -37,7 +31,7 @@ const ConfirmPopup = ({
 
           <a
             className='popup__link'
-            href={`https://yandex.ru/maps/?whatshere[point]=${coordinates}&whatshere[zoom]=17`}
+            href={`https://yandex.ru/maps/?text=${card?.data.address.value}`}
             target='_blank'
             onClick={closePopup}
           >

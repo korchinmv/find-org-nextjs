@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import StoreProvider from "./StoreProvider";
 import "./globals.scss";
 
@@ -23,12 +22,6 @@ export default function RootLayout({
           httpEquiv='Content-Security-Policy'
           content='upgrade-insecure-requests'
         ></meta>
-        <Script
-          type='text/javascript'
-          async
-          defer
-          src={`https://api-maps.yandex.ru/v3/?apikey=${process.env.YANDEX_KEY}&lang=ru_RU`}
-        />
       </head>
       <StoreProvider>
         <body className={inter.className}>{children}</body>
