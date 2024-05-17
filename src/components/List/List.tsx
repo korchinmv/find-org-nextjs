@@ -6,6 +6,7 @@ import "./List.scss";
 interface ListProps {
   data: Organization[];
   setPopupOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onCardClick: any;
 }
 
 const List = ({ data, setPopupOpen, onCardClick }: ListProps) => {

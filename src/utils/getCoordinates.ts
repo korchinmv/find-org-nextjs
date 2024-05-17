@@ -1,18 +1,15 @@
 interface getCoordinatesProps {
   adress: string;
-  setCoordinates: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-export const getСoordinates = ({
-  adress,
-  setCoordinates,
-}: getCoordinatesProps) => {
-  ymaps3
+export const getСoordinates = ({ adress }: getCoordinatesProps) => {
+  const coord = ymaps3
     .search({ text: adress })
     .then((result) => {
-      setCoordinates(result[0].geometry?.coordinates.join(","));
+      return result[0].geometry?.coordinates.join(",");
     })
     .catch((e) => {
       console.log(e);
     });
+  return coord;
 };
